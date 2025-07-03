@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
@@ -39,7 +39,7 @@ export default function BlogsPage() {
     setLocalSearchTerm(searchTerm);
   }, [searchTerm]);
 
-  const fetchBlogs = async (page = 1) => {
+  const fetchBlogs = useCallback(async (page = 1) => {
     try {
       setLoading(true);
       const params = {
@@ -65,11 +65,11 @@ export default function BlogsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user?.id, user?.role, statusFilter, searchTerm]);
 
   useEffect(() => {
     fetchBlogs();
-  }, [user?.id, statusFilter, searchTerm]);
+  }, [fetchBlogs]);
 
   const handleLocalSearchChange = (e) => {
     const value = e.target.value;

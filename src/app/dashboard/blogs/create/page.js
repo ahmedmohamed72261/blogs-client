@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -215,9 +216,11 @@ export default function CreateBlogPage() {
               <div>
                 {imagePreview ? (
                   <div className="relative group">
-                    <img
+                    <Image
                       src={imagePreview}
                       alt="Preview"
+                      width={400}
+                      height={256}
                       className="w-full h-64 object-cover rounded-xl shadow-lg"
                     />
                     <button

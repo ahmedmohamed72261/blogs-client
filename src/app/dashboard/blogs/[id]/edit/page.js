@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
+import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -131,7 +132,7 @@ export default function EditBlogPage() {
       <div className="text-center py-12">
         <h3 className="text-lg font-medium text-gray-900">Blog not found</h3>
         <p className="mt-1 text-sm text-gray-500">
-          The blog you're looking for doesn't exist or you don't have permission to edit it.
+        The blog you&apos;re looking for doesn&apos;t exist or you don&apos;t have permission to edit it.
         </p>
       </div>
     );
@@ -226,9 +227,11 @@ export default function EditBlogPage() {
               <div className="px-6 py-4">
                 {imagePreview ? (
                   <div className="relative">
-                    <img
+                    <Image
                       src={imagePreview}
                       alt="Preview"
+                      width={400}
+                      height={192}
                       className="w-full h-48 object-cover rounded-lg"
                     />
                     <button
